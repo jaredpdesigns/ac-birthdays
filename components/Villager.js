@@ -39,7 +39,23 @@ const Villager = ({ villager, active }) => {
             </span>
           </figcaption>
         </figure>
-        {active && <Confetti height={442} width={360} numberOfPieces={100} />}
+        {active && (
+          <Confetti
+            colors={[
+              "#f1e26f",
+              "#68a1d7",
+              "#008077",
+              "#008160",
+              "#e5ffe6",
+              "#327a93",
+              "#ec7175",
+              "#98d2e3",
+            ]}
+            height={442}
+            width={360}
+            numberOfPieces={100}
+          />
+        )}
       </a>
     </Link>
   );
