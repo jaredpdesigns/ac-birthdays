@@ -6,7 +6,7 @@ const Villager = ({ villager }, props) => {
   return (
     <Link
       href="/villagers/[villager]/"
-      as={`/villagers/${villager.name}`}
+      as={`/villagers/${villager.name.toLowerCase()}`}
       passHref
     >
       <a

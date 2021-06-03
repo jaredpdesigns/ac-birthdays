@@ -1,20 +1,13 @@
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Confetti from "react-confetti";
 import { CalendarEvent } from "tabler-icons-react";
 import styles from "./Villager.module.scss";
 
 const Villager = ({ villager, active }) => {
-  const [confetti, setConfetti] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setConfetti(false);
-    }, 20000);
-  }, []);
   return (
     <Link
       href="/villagers/[villager]/"
-      as={`/villagers/${villager.name}`}
+      as={`/villagers/${villager.name.toLowerCase()}`}
       passHref
     >
       <a
@@ -46,9 +39,7 @@ const Villager = ({ villager, active }) => {
             </span>
           </figcaption>
         </figure>
-        {active && confetti && (
-          <Confetti height={442} width={360} numberOfPieces={100} />
-        )}
+        {active && <Confetti height={442} width={360} numberOfPieces={100} />}
       </a>
     </Link>
   );
