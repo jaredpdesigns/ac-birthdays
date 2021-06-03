@@ -36,24 +36,34 @@ const Detail = ({ extras, villager }) => {
             {`${villager.birthday_month} ${villager.birthday_day} • ${villager.name} • Animal Crossing Birthdays`}
           </title>
           <meta
+            key="og:title"
             property="og:title"
             content={`${villager.birthday_month} ${villager.birthday_day} • ${villager.name} • Animal Crossing Birthdays`}
           />
           <meta
+            key="description"
             name="description"
             content={`“${villager.quote.replace(".", "")}”`}
           />
           <meta
+            key="og:description"
             property="og:description"
             content={`“${villager.quote.replace(".", "")}”`}
           />
           <meta
-            property="twitter:url"
-            content={`https://ac-birthdays.jaredpendergraft.com/villagers/${villager.name}`}
+            key="og:url"
+            property="og:url"
+            content={`https://ac-birthdays.netlify.app/villagers/${villager.name.toLowerCase()}`}
           />
           <meta
-            property="og:url"
-            content={`https://ac-birthdays.jaredpendergraft.com/villagers/${villager.name}`}
+            key="twitter:url"
+            property="twitter:url"
+            content={`https://ac-birthdays.netlify.app/villagers/${villager.name.toLowerCase()}`}
+          />
+          <link
+            key="canonical"
+            href={`https://ac-birthdays.netlify.app/villagers/${villager.name.toLowerCase()}`}
+            rel="canonical"
           />
         </Head>
         <article>
@@ -67,6 +77,7 @@ const Detail = ({ extras, villager }) => {
               }}
             >
               <img
+                alt={`Featured image of ${villager.name}`}
                 loading="lazy"
                 src={villager.image_url}
                 height="240"
@@ -103,6 +114,7 @@ const Detail = ({ extras, villager }) => {
                     </span>
                     <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
                       <img
+                        alt={`${villager.name}‘s favorite outfit`}
                         loading="lazy"
                         src={item.image_url}
                         height="120"
@@ -122,6 +134,7 @@ const Detail = ({ extras, villager }) => {
                 </span>
                 <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
                   <img
+                    alt={`${villager.name}‘s house flooring`}
                     loading="lazy"
                     src={extras.flooring.image_url}
                     height="120"
@@ -141,6 +154,7 @@ const Detail = ({ extras, villager }) => {
                 </span>
                 <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
                   <img
+                    alt={`${villager.name}‘s house wallpaper`}
                     loading="lazy"
                     src={extras.wallpaper.image_url}
                     height="120"

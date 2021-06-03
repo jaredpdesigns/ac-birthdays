@@ -14,7 +14,7 @@ const Footer = () => (
       <a
         className="smooth"
         href="https://averymirabelle.com"
-        rel="nofollower"
+        rel="noopener"
         target="_blank"
         title="Visit Avery's amazing site"
       >
@@ -24,7 +24,7 @@ const Footer = () => (
       <a
         className="smooth"
         href="https://jaredpendergraft.com"
-        rel="nofollower"
+        rel="noopener"
         target="_blank"
         title="Check out other great projects by Dad"
       >
