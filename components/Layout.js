@@ -52,8 +52,8 @@ const Layout = (props) => {
           content="https://ac-birthdays.netlify.app/"
         />
 
-        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-        <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
         <link
           key="canonical"
           href="https://ac-birthdays.netlify.app/"
