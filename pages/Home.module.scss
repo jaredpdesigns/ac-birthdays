@@ -1,0 +1,18 @@
+.HomeNav {
+  position: sticky;
+  top: var(--headerHeight);
+  z-index: 200;
+  button {
+    border-radius: calc(var(--size__xl) / 2);
+    &:focus,
+    &:hover {
+      color: var(--color__base--mid);
+    }
+    &:focus-visible {
+      box-shadow: 0 0 0 var(--size__xs) var(--color__brand--light);
+    }
+  }
+  p {
+    font-family: var(--typeFamily__display);
+  }
+}

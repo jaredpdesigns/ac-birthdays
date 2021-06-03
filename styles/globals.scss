@@ -1,0 +1,12 @@
+@import "reset";
+@import "base";
+@import "helpers";
+
+:root {
+  --typeFamily__body: "Excon", sans-serif;
+  --typeFamily__display: "Bespoke Slab", sans-serif;
+}
+
+.type__weight--semibold {
+  font-weight: 500;
+}

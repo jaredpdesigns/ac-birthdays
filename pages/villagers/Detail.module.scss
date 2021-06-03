@@ -1,0 +1,45 @@
+.Detail {
+  background-color: var(--bg);
+  color: var(--type);
+  min-height: calc(100vh - var(--headerHeight));
+  blockquote {
+    background-color: var(--type);
+    color: var(--bg);
+    p {
+      font-family: var(--typeFamily__display);
+      font-style: italic;
+      font-weight: 500;
+      &:before,
+      &:after {
+        opacity: 0.5;
+      }
+      &:before {
+        content: "“";
+      }
+      &:after {
+        content: "”";
+      }
+    }
+  }
+  &Villager {
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    > figure {
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: contain;
+      img {
+        filter: drop-shadow(0 var(--size__s) var(--size__m) rgba(black, 0.5));
+        position: relative;
+        top: var(--size__m);
+      }
+    }
+  }
+  &Extras {
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    figure {
+      background-color: var(--type);
+      color: var(--bg);
+      width: 100%;
+    }
+  }
+}

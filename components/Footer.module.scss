@@ -1,0 +1,26 @@
+.Footer {
+  a {
+    border-radius: var(--size__xs);
+    display: inline-block;
+    position: relative;
+    &:after {
+      background-color: var(--color__brand);
+      border-radius: calc(var(--size__xs) / 4);
+      bottom: 0;
+      content: "";
+      display: block;
+      height: calc(var(--size__xs) / 2);
+      left: 0;
+      position: absolute;
+      transform: translateY(calc(var(--size__xs) / 2));
+      width: 100%;
+    }
+    &:focus,
+    &:hover {
+      color: var(--color__base--mid);
+    }
+    &:focus-visible {
+      box-shadow: 0 0 0 var(--size__xs) var(--color__brand--light);
+    }
+  }
+}

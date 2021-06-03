@@ -1,0 +1,261 @@
+@import "variables";
+
+.border {
+  &__all {
+    border-style: solid;
+    border-width: var(--size__xxs);
+  }
+  @each $directionKey, $value in $directions {
+    &__#{$directionKey} {
+      border-#{$directionKey}: var(--size__xxs) solid;
+    }
+  }
+}
+
+@each $colorName, $colorValue in $colors {
+  .color__bg--#{$colorName} {
+    background-color: var(--color__#{$colorName});
+  }
+  .color__border--#{$colorName} {
+    border-color: var(--color__#{$colorName});
+  }
+  .color__type--#{$colorName} {
+    color: var(--color__#{$colorName});
+  }
+}
+
+.flow {
+  &--flex {
+    display: flex;
+  }
+  &--grid {
+    display: grid;
+  }
+  &--inline {
+    display: inline-flex;
+  }
+  &__align {
+    &--h {
+      &-around {
+        justify-content: space-around;
+      }
+      &-between {
+        justify-content: space-between;
+      }
+      &-center {
+        justify-content: center;
+      }
+      &-end {
+        justify-content: flex-end;
+        &.flow--grid {
+          justify-content: end;
+        }
+      }
+      &-start {
+        justify-content: flex-start;
+        &.flow--grid {
+          justify-content: start;
+        }
+      }
+    }
+    &--v {
+      &-center {
+        align-items: center;
+      }
+      &-end {
+        align-items: flex-end;
+        &.flow--grid {
+          align-items: end;
+        }
+      }
+      &-start {
+        align-items: flex-start;
+        &.flow--grid {
+          align-items: start;
+        }
+      }
+      &-stretch {
+        align-items: stretch;
+      }
+    }
+  }
+  &__direction {
+    &--column {
+      flex-direction: column;
+      &.flow--grid {
+        grid-auto-flow: column;
+      }
+    }
+    &--row {
+      flex-direction: row;
+      &.flow--grid {
+        grid-auto-flow: row;
+      }
+    }
+  }
+  &__flex {
+    &--grow {
+      flex-grow: 1;
+      &-no {
+        flex-grow: 0;
+      }
+    }
+    &--shrink {
+      flex-shrink: 1;
+      &-no {
+        flex-shrink: 0;
+      }
+    }
+    &--wrap {
+      flex-wrap: wrap;
+      &-no {
+        flex-wrap: nowrap;
+      }
+    }
+  }
+  &__grid {
+    @each $sizeKey, $value in $sizes {
+      &--gap-#{$sizeKey} {
+        grid-gap: var(--size__#{$sizeKey});
+      }
+    }
+  }
+  &__self {
+    &--center {
+      align-self: center;
+    }
+    &--end {
+      align-self: flex-end;
+      .flow--grid & {
+        align-self: end;
+      }
+    }
+    &--start {
+      align-self: flex-start;
+      .flow--grid & {
+        align-self: start;
+      }
+    }
+    &--stretch {
+      align-self: stretch;
+    }
+  }
+  &__size {
+    @each $sizeKey, $value in $sizes {
+      &--h-#{$sizeKey} {
+        height: var(--size__#{$sizeKey});
+      }
+      &--w-#{$sizeKey} {
+        width: var(--size__#{$sizeKey});
+      }
+    }
+  }
+}
+
+@each $directionKey, $value in $directions {
+  @each $sizeKey, $value in $sizes {
+    .margin__#{$directionKey}--#{$sizeKey} {
+      margin-#{$directionKey}: var(--size__#{$sizeKey});
+    }
+    .padding__#{$directionKey}--#{$sizeKey} {
+      padding-#{$directionKey}: var(--size__#{$sizeKey});
+    }
+  }
+}
+
+@each $sizeKey, $value in $sizes {
+  .margin__all--#{$sizeKey} {
+    margin: var(--size__#{$sizeKey});
+  }
+  .oomph__h--#{$sizeKey} > * + *:not([class*="margin"]) {
+    margin-left: var(--size__#{$sizeKey});
+  }
+  .oomph__v--#{$sizeKey} > * + *:not([class*="margin"]) {
+    margin-top: var(--size__#{$sizeKey});
+  }
+  .padding__all--#{$sizeKey} {
+    padding: var(--size__#{$sizeKey});
+  }
+  .radius--#{$sizeKey} {
+    border-radius: var(--size__#{$sizeKey});
+    overflow: hidden;
+  }
+  .radius__bl--#{$sizeKey} {
+    border-bottom-left-radius: var(--size__#{$sizeKey});
+    overflow: hidden;
+  }
+  .radius__br--#{$sizeKey} {
+    border-bottom-right-radius: var(--size__#{$sizeKey});
+    overflow: hidden;
+  }
+  .radius__tl--#{$sizeKey} {
+    border-top-left-radius: var(--size__#{$sizeKey});
+    overflow: hidden;
+  }
+  .radius__tr--#{$sizeKey} {
+    border-top-right-radius: var(--size__#{$sizeKey});
+    overflow: hidden;
+  }
+}
+
+.shadow {
+  box-shadow: 0 calc(var(--size__xs) / 2) var(--size__xs) rem(-2) rgba(black, 0.25),
+    0 var(--size__s) var(--size__m) rem(-8) rgba(black, 0.25);
+  [data-theme="dark"] & {
+    box-shadow: 0 calc(var(--size__xs) / 2) var(--size__xs) rem(-2) rgba(black, 0.75),
+      0 var(--size__s) var(--size__m) rem(-8) rgba(black, 0.75);
+  }
+}
+
+.smooth {
+  transition: all 0.375s ease-in;
+}
+
+@each $type-family, $value in $type__families {
+  .type__family--#{$type-family} {
+    font-family: $value;
+  }
+}
+
+.type__align {
+  &--center {
+    text-align: center;
+  }
+  &--left {
+    text-align: left;
+  }
+  &--right {
+    text-align: right;
+  }
+}
+
+.type__clamp {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@each $sizeKey, $value in $type__sizes {
+  @each $lineheightKey, $value in $type__lineheights {
+    .type__size--#{$sizeKey}-#{$lineheightKey} {
+      font-size: var(--typeSize__#{$sizeKey});
+      line-height: var(--typeLineheight__#{$lineheightKey});
+    }
+  }
+}
+
+@each $type-weight, $value in $type__weights {
+  .type__weight--#{$type-weight} {
+    font-weight: $value;
+  }
+}
+
+@each $width, $value in $widths {
+  .width__#{$width} {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--width__#{$width});
+    width: 100%;
+  }
+}

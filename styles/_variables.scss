@@ -1,0 +1,82 @@
+// Functions
+@function rem($size) {
+  $size-rem: $size/16;
+  @return #{$size-rem}rem;
+}
+
+// Variables
+$colors: (
+  base: hsl(38, 23%, 34%),
+  base--mid: hsl(38, 12%, 48%),
+  base--semi: hsl(38, 12%, 64%),
+  base--light: hsl(38, 12%, 88%),
+  base--ghost: hsl(38, 12%, 92%),
+  brand: hsl(176, 100%, 25%),
+  brand--light: hsl(176, 25%, 75%),
+  contrast: #ffffff,
+);
+
+$directions: (bottom, left, right, top);
+
+$sizes: (
+  xxs: rem(1),
+  xs: rem(4),
+  s: rem(8),
+  m: rem(16),
+  l: rem(32),
+  xl: rem(40),
+  xxl: rem(48),
+  xxxl: rem(64),
+);
+
+$type__sizes: (
+  xxs: rem(12),
+  xs: rem(14),
+  s: rem(16),
+  m: rem(18),
+  ml: rem(22),
+  l: rem(24),
+  xl: rem(28),
+  xxl: rem(40),
+  xxxl: rem(48),
+);
+
+$type__lineheights: (
+  xs: rem(12),
+  s: rem(16),
+  m: rem(24),
+  l: rem(32),
+  xl: rem(40),
+  xxl: rem(48),
+  xxxl: rem(56),
+);
+
+$type__families: (
+  body: (
+    sans-serif,
+  ),
+  display: (
+    sans-serif,
+  ),
+  mono: (
+    monospace,
+  ),
+);
+
+$type__weights: (
+  normal: normal,
+  semibold: 600,
+  bold: bold,
+);
+
+$widths: (
+  xxs: rem(160),
+  xs: rem(240),
+  s: rem(320),
+  m: rem(480),
+  ml: rem(640),
+  l: rem(960),
+  xl: rem(1280),
+  xxl: rem(1680),
+  xxxl: rem(2432),
+);

@@ -1,0 +1,56 @@
+.Villager {
+  display: block;
+  position: relative;
+  &:after,
+  &:before {
+    border-radius: var(--size__m);
+    content: "";
+    display: block;
+    left: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  &:after {
+    border: var(--size__xs) solid var(--type);
+    opacity: 0.125;
+  }
+  &:before {
+    background-color: var(--color__contrast);
+    box-shadow: 0 var(--size__l) var(--size__xxxl) calc(var(--size__l) * -1)
+      black;
+    opacity: 0;
+    transition: opacity 0.375s ease-in;
+  }
+  &:focus,
+  &:hover {
+    &:before {
+      opacity: 0.125;
+    }
+  }
+  &:focus-visible {
+    box-shadow: 0 0 0 var(--size__xs) var(--color__brand--light);
+  }
+  &Active {
+    transform: scale(1.0625);
+  }
+  figure {
+    background-color: var(--bg);
+    color: var(--type);
+  }
+  img {
+    filter: drop-shadow(0 var(--size__xs) var(--size__s) rgba(black, 0.125));
+    transition: transform 0.375s ease-in;
+    @supports (aspect-ratio: 1/1) {
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      object-position: center;
+    }
+    @supports not (aspect-ratio: 1/1) {
+      height: 0;
+      padding-bottom: 100%;
+      position: relative;
+    }
+  }
+}

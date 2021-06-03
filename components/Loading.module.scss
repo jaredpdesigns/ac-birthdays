@@ -1,0 +1,17 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Loading {
+  height: var(--size__xxxl);
+  width: var(--size__xxxl);
+  & :local {
+    animation: spin 3s ease infinite;
+  }
+}
