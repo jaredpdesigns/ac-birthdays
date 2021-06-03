@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Search, X } from "tabler-icons-react";
-import Villager from "@components/VillagerSearch";
+import Loading from "@components/Loading";
+import VillagerSearch from "@components/VillagerSearch";
 import styles from "./Search.module.scss";
 const SearchPanel = (props) => {
   const searchRef = useRef(null);
   const [active, setActive] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [villagers, setVillagers] = useState([]);
   const clearQuery = useCallback(() => {
@@ -16,6 +18,7 @@ const SearchPanel = (props) => {
     const query = event.target.value;
     setQuery(query);
     if (query.length) {
+      setLoading(true);
       const request = await fetch(
         `https://api.nookipedia.com/villagers?game=nh&nhdetails=true`,
         {
@@ -40,6 +43,7 @@ const SearchPanel = (props) => {
         if (a.birthday_month < b.birthday_month) return -1;
       });
       setVillagers(sort);
+      setLoading(false);
     } else {
       setVillagers([]);
     }
@@ -91,12 +95,17 @@ const SearchPanel = (props) => {
           </button>
         )}
       </section>
+      {active && loading && (
+        <section className="type__align--center">
+          <Loading />
+        </section>
+      )}
       {active && villagers.length > 0 && (
         <section
           className={`${styles.SearchResults} border__top color__border--base--light flow__flex--grow flow__flex--shrink oomph__v--s padding__all--m`}
         >
           {villagers.map((item, index) => (
-            <Villager villager={item} key={index} />
+            <VillagerSearch villager={item} key={index} />
           ))}
         </section>
       )}

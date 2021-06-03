@@ -7,7 +7,9 @@ const Month = ({ currentMonth, today }) => {
   const [villagers, setVillagers] = useState([]);
 
   const getVillagers = useCallback(async () => {
-    const query = "villagers?game=nh&nhdetails=true&birthmonth=" + currentMonth;
+    const query =
+      "villagers?game=nh&nhdetails=true&thumbsize=240&birthmonth=" +
+      currentMonth;
     const request = await fetch(`https://api.nookipedia.com/${query}`, {
       headers: {
         "X-API-KEY": process.env.NOOKIPEDIA_KEY,

@@ -1,7 +1,7 @@
 import styles from "./Loading.module.scss";
 const Loading = () => (
   <span className={`${styles.Loading} color__type--brand flow--inline flow__align--h-center flow__align--v-center`}>
-    <svg height="34" width="38" viewBox="0 0 38 34">
+    <svg height="32" width="35.76470592" viewBox="0 0 38 34">
       <path
         fill="currentColor"
         fillRule="evenodd"

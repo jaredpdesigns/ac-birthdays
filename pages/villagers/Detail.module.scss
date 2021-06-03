@@ -28,9 +28,13 @@
       background-position: center top;
       background-size: contain;
       img {
+        height: 15rem;
         filter: drop-shadow(0 var(--size__s) var(--size__m) rgba(black, 0.5));
+        object-fit: contain;
+        object-position: center;
         position: relative;
         top: var(--size__m);
+        width: 15rem;
       }
     }
   }

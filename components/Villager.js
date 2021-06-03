@@ -26,8 +26,8 @@ const Villager = ({ villager, active }) => {
             alt={`Featured image for ${villager.name}`}
             loading="lazy"
             src={villager.image_url}
-            height="240"
-            width="240"
+            height="120"
+            width="120"
           />
           <figcaption>
             <h2>{villager.name}</h2>

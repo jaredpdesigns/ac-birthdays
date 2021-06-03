@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CalendarEvent } from "tabler-icons-react";
 import styles from "./VillagerSearch.module.scss";
 
-const Villager = ({ villager }, props) => {
+const VillagerSearch = ({ villager }, props) => {
   return (
     <Link
       href="/villagers/[villager]/"
@@ -41,4 +41,4 @@ const Villager = ({ villager }, props) => {
     </Link>
   );
 };
-export default Villager;
+export default VillagerSearch;

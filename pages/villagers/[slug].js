@@ -117,8 +117,8 @@ const Detail = ({ extras, villager }) => {
                         alt={`${villager.name}‘s favorite outfit`}
                         loading="lazy"
                         src={item.image_url}
-                        height="120"
-                        width="120"
+                        height="128"
+                        width="128"
                       />
                       <figcaption>
                         <p>{extras.clothing.name}</p>
@@ -137,8 +137,8 @@ const Detail = ({ extras, villager }) => {
                     alt={`${villager.name}‘s house flooring`}
                     loading="lazy"
                     src={extras.flooring.image_url}
-                    height="120"
-                    width="120"
+                    height="128"
+                    width="128"
                   />
                   <figcaption>
                     <p>{extras.flooring.name}</p>
@@ -157,8 +157,8 @@ const Detail = ({ extras, villager }) => {
                     alt={`${villager.name}‘s house wallpaper`}
                     loading="lazy"
                     src={extras.wallpaper.image_url}
-                    height="120"
-                    width="120"
+                    height="128"
+                    width="128"
                   />
                   <figcaption>
                     <p>{extras.wallpaper.name}</p>
@@ -174,7 +174,7 @@ const Detail = ({ extras, villager }) => {
 };
 
 export async function getServerSideProps(context) {
-  const query = `villagers?game=nh&nhdetails=true&name=${context.query.slug}`;
+  const query = `villagers?game=nh&nhdetails=true&thumbsize=480&name=${context.query.slug}`;
   const request = await fetch(`https://api.nookipedia.com/${query}`, {
     headers: {
       "X-API-KEY": process.env.NOOKIPEDIA_KEY,
@@ -194,15 +194,15 @@ export async function getServerSideProps(context) {
   const extrasQuery = [
     {
       category: "clothing",
-      query: `https://api.nookipedia.com/nh/clothing/${results[0].clothing}`,
+      query: `https://api.nookipedia.com/nh/clothing/${results[0].clothing}?thumbsize=256`,
     },
     {
       category: "flooring",
-      query: `https://api.nookipedia.com/nh/interior/${results[0].nh_details.house_flooring}`,
+      query: `https://api.nookipedia.com/nh/interior/${results[0].nh_details.house_flooring}?thumbsize=256`,
     },
     {
       category: "wallpaper",
-      query: `https://api.nookipedia.com/nh/interior/${results[0].nh_details.house_wallpaper}`,
+      query: `https://api.nookipedia.com/nh/interior/${results[0].nh_details.house_wallpaper}?thumbsize=256`,
     },
   ];
 

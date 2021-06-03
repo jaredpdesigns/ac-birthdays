@@ -37,16 +37,13 @@
     color: var(--type);
   }
   img {
+    height: var(--size__xxxl);
+    object-fit: contain;
+    object-position: center;
     transition: transform 0.375s ease-in;
+    width: var(--size__xxxl);
     @supports (aspect-ratio: 1/1) {
       aspect-ratio: 1/1;
-      object-fit: contain;
-      object-position: center;
-    }
-    @supports not (aspect-ratio: 1/1) {
-      height: 0;
-      padding-bottom: 100%;
-      position: relative;
     }
   }
 }

@@ -4,7 +4,7 @@
     display: inline-block;
     position: relative;
     &:after {
-      background-color: var(--color__brand);
+      background-color: var(--color__brand--light);
       border-radius: calc(var(--size__xs) / 4);
       bottom: 0;
       content: "";
