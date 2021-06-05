@@ -1,4 +1,6 @@
 .VillagerSearch {
+  background-color: var(--bg);
+  color: var(--type);
   display: block;
   position: relative;
   &:after,
@@ -32,18 +34,7 @@
   &:focus-visible {
     box-shadow: 0 0 0 var(--size__xs) var(--color__brand--light);
   }
-  figure {
-    background-color: var(--bg);
-    color: var(--type);
-  }
-  img {
-    height: var(--size__xxxl);
-    object-fit: contain;
-    object-position: center;
-    transition: transform 0.375s ease-in;
-    width: var(--size__xxxl);
-    @supports (aspect-ratio: 1/1) {
-      aspect-ratio: 1/1;
-    }
+  p:first-child {
+    font-family: var(--typeFamily__display);
   }
 }

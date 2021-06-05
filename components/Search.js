@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { getAllVillagers } from "../api/";
 import { Search, X } from "tabler-icons-react";
 import Loading from "@components/Loading";
 import VillagerSearch from "@components/VillagerSearch";
@@ -18,32 +19,26 @@ const SearchPanel = (props) => {
     const query = event.target.value;
     setQuery(query);
     if (query.length) {
+      setVillagers([]);
       setLoading(true);
-      const request = await fetch(
-        `https://api.nookipedia.com/villagers?game=nh&nhdetails=true`,
-        {
-          headers: {
-            "X-API-KEY": process.env.NOOKIPEDIA_KEY,
-            "Accept-Version": "2.0.0",
-          },
-        }
-      );
-      const response = await request.json();
-      const filtered = response.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(query.toLowerCase()) ||
-          item.birthday_month.toLowerCase().includes(query.toLowerCase()) ||
-          item.birthday_day.toLowerCase().includes(query.toLowerCase())
-        );
-      });
-      const sort = filtered.sort((a, b) => {
-        if (Number(a.birthday_day) < Number(b.birthday_day)) return -1;
-        if (Number(a.birthday_day) > Number(b.birthday_day)) return 1;
-        if (a.birthday_month > b.birthday_month) return 1;
-        if (a.birthday_month < b.birthday_month) return -1;
-      });
-      setVillagers(sort);
-      setLoading(false);
+      const response = await getAllVillagers();
+      if (response) {
+        const filtered = response.filter((item) => {
+          return (
+            item.name.toLowerCase().includes(query.toLowerCase()) ||
+            item.birthday_month.toLowerCase().includes(query.toLowerCase()) ||
+            item.birthday_day.toLowerCase().includes(query.toLowerCase())
+          );
+        });
+        const sort = filtered.sort((a, b) => {
+          if (Number(a.birthday_day) < Number(b.birthday_day)) return -1;
+          if (Number(a.birthday_day) > Number(b.birthday_day)) return 1;
+          if (a.birthday_month > b.birthday_month) return 1;
+          if (a.birthday_month < b.birthday_month) return -1;
+        });
+        setVillagers(sort);
+        setLoading(false);
+      }
     } else {
       setVillagers([]);
     }
@@ -96,17 +91,26 @@ const SearchPanel = (props) => {
         )}
       </section>
       {active && loading && (
-        <section className="type__align--center">
+        <section className={`${styles.SearchLoading} type__align--center`}>
           <Loading />
         </section>
       )}
       {active && villagers.length > 0 && (
         <section
-          className={`${styles.SearchResults} border__top color__border--base--light flow__flex--grow flow__flex--shrink oomph__v--s padding__all--m`}
+          className={`${styles.SearchResults} border__top color__border--base--light flow__flex--grow flow__flex--shrink oomph__v--xs padding__all--s`}
         >
           {villagers.map((item, index) => (
             <VillagerSearch villager={item} key={index} />
           ))}
+        </section>
+      )}
+      {!loading && query && !villagers.length && (
+        <section
+          className={`${styles.SearchResults} border__top color__border--base--light flow__flex--grow flow__flex--shrink oomph__v--xs padding__all--m`}
+        >
+          <p className="color__type--base--mid type__size--s-s">
+            <em>No villagers found</em>
+          </p>
         </section>
       )}
     </section>

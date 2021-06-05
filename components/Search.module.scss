@@ -48,6 +48,9 @@
       }
     }
   }
+  &Loading {
+    margin-top: calc(var(--size__m) * -1);
+  }
   &Results {
     overflow: hidden;
     overflow-y: auto;

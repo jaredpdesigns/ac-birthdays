@@ -3,11 +3,11 @@ import Confetti from "react-confetti";
 import { CalendarEvent } from "tabler-icons-react";
 import styles from "./Villager.module.scss";
 
-const Villager = ({ villager, active }) => {
+const Villager = ({ active, villager }) => {
   return (
     <Link
       href="/villagers/[villager]/"
-      as={`/villagers/${villager.name.toLowerCase()}`}
+      as={`/villagers/${villager.name}`}
       passHref
     >
       <a

@@ -40,6 +40,7 @@
   }
   &Extras {
     grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    justify-items: center;
     figure {
       background-color: var(--type);
       color: var(--bg);
