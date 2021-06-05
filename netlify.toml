@@ -1,0 +1,7 @@
+[build]
+  base = "/"
+  publish = "out/"
+  command = "yarn build && yarn export"
+
+[[plugins]]
+  package = "netlify-plugin-next-dynamic"
