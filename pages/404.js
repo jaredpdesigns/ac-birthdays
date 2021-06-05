@@ -1,8 +1,9 @@
-import { Home } from "tabler-icons-react";
 import Head from "next/head";
 import Header from "@components/Header";
 import Layout from "@components/Layout";
 import Link from "next/link";
+import { Home } from "tabler-icons-react";
+
 export default function Custom404() {
   return (
     <Layout>
@@ -40,9 +41,11 @@ export default function Custom404() {
         </Link>
       </Header>
       <main className="oomph__v--m padding__all--l type__align--center width__l">
-        <h1>Uh-Oh</h1>
-        <hr/>
-        <p>Oops looks like we can’t find this page</p>
+        <h1 className="color__type--brand">Uh-Oh</h1>
+        <hr />
+        <p className="color__type--base--mid">
+          Oops looks like we can’t find this page
+        </p>
       </main>
     </Layout>
   );

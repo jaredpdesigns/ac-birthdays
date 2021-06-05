@@ -1,19 +1,13 @@
 import { useRouter } from "next/router";
-import { getAllVillagers, getExtra, getVillagerDetailed } from "../../api/";
 import ErrorPage from "next/error";
-import Loading from "@components/Loading";
 import Head from "next/head";
+import Link from "next/link";
+import { getVillagers, getExtra, getVillager } from "@components/API";
+import Loading from "@components/Loading";
 import Header from "@components/Header";
 import Layout from "@components/Layout";
-import Link from "next/link";
-import {
-  CalendarEvent,
-  Hanger,
-  Home,
-  Marquee,
-  Paint,
-} from "tabler-icons-react";
 import styles from "./Detail.module.scss";
+import { CalendarEvent, Hanger, Marquee, Paint } from "tabler-icons-react";
 
 const Detail = ({ extras, villager }) => {
   const router = useRouter();
@@ -23,16 +17,7 @@ const Detail = ({ extras, villager }) => {
   }
   return (
     <Layout>
-      <Header>
-        <Link href="/" passHref>
-          <a
-            className="flow--inline flow__align--h-center flow__align--v-center flow__size--h-xl flow__size--w-xl smooth type__size--m-l"
-            title="Return Home"
-          >
-            <Home size={24} />
-          </a>
-        </Link>
-      </Header>
+      <Header />
       {router.isFallback ? (
         <section className="padding__all--l type__align--center">
           <Loading />
@@ -192,7 +177,7 @@ const Detail = ({ extras, villager }) => {
 };
 
 export async function getStaticProps({ params }) {
-  const villager = await getVillagerDetailed(params.slug);
+  const villager = await getVillager(params.slug);
   if (!villager) {
     return {
       notFound: true,
@@ -216,9 +201,11 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const villagers = await getAllVillagers();
+  const villagers = await getVillagers();
   return {
-    paths: villagers?.map(({ slug }) => `/villagers/${slug}`) ?? [],
+    paths: villagers
+      ? villagers.map(({ villager }) => `/villagers/${villager}`)
+      : [],
     fallback: true,
   };
 }

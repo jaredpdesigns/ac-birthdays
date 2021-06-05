@@ -4,12 +4,8 @@
   top: 0;
   width: 100%;
   z-index: 300;
-  > a:not(.HeaderLogo),
-  > button {
+  button {
     border-radius: calc(var(--size__xl) / 2);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     &:focus,
     &:hover {
       color: var(--color__base--mid);
@@ -17,12 +13,6 @@
     &:focus-visible {
       box-shadow: 0 0 0 var(--size__xs) var(--color__brand--light);
     }
-  }
-  > a:not(.HeaderLogo) {
-    left: var(--size__m);
-  }
-  > button {
-    right: var(--size__m);
   }
   &Logo {
     &:hover,

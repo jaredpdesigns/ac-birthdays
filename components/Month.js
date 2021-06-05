@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
-import { getMonth } from "../api/";
+import { getMonth } from "@components/API";
 import Loading from "@components/Loading";
 import Villager from "@components/Villager";
 import styles from "./Month.module.scss";
+
 const Month = ({ currentMonth, today }) => {
-  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [villagers, setVillagers] = useState([]);
 

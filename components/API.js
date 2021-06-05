@@ -1,7 +1,22 @@
-export async function getAllVillagers() {
+export async function getExtra(query) {
+  try {
+    const request = await fetch(`https://api.nookipedia.com/${query}`, {
+      headers: {
+        "X-API-KEY": process.env.NOOKIPEDIA_KEY,
+        "Accept-Version": "2.0.0",
+      },
+    });
+    const response = await request.json();
+    return response ? response : null;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getMonth(month) {
   try {
     const request = await fetch(
-      `https://api.nookipedia.com/villagers?game=nh`,
+      `https://api.nookipedia.com/villagers?game=nh&thumbsize=240&birthmonth=${month}`,
       {
         headers: {
           "X-API-KEY": process.env.NOOKIPEDIA_KEY,
@@ -15,7 +30,8 @@ export async function getAllVillagers() {
     return error;
   }
 }
-export async function getVillagerDetailed(slug) {
+
+export async function getVillager(slug) {
   try {
     const request = await fetch(
       `https://api.nookipedia.com/villagers?game=nh&nhdetails=true&name=${slug}`,
@@ -32,24 +48,11 @@ export async function getVillagerDetailed(slug) {
     return error;
   }
 }
-export async function getExtra(query) {
-  try {
-    const request = await fetch(`https://api.nookipedia.com/${query}`, {
-      headers: {
-        "X-API-KEY": process.env.NOOKIPEDIA_KEY,
-        "Accept-Version": "2.0.0",
-      },
-    });
-    const response = await request.json();
-    return response ? response : null;
-  } catch (error) {
-    return error;
-  }
-}
-export async function getMonth(month) {
+
+export async function getVillagers() {
   try {
     const request = await fetch(
-      `https://api.nookipedia.com/villagers?game=nh&thumbsize=240&birthmonth=${month}`,
+      `https://api.nookipedia.com/villagers?game=nh`,
       {
         headers: {
           "X-API-KEY": process.env.NOOKIPEDIA_KEY,

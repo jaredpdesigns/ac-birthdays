@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getAllVillagers } from "../api/";
-import { Search, X } from "tabler-icons-react";
+import { getVillagers } from "@components/API";
 import Loading from "@components/Loading";
 import VillagerSearch from "@components/VillagerSearch";
 import styles from "./Search.module.scss";
+import { Search, X } from "tabler-icons-react";
+
 const SearchPanel = (props) => {
   const searchRef = useRef(null);
   const [active, setActive] = useState(false);
@@ -21,7 +22,7 @@ const SearchPanel = (props) => {
     if (query.length) {
       setVillagers([]);
       setLoading(true);
-      const response = await getAllVillagers();
+      const response = await getVillagers();
       if (response) {
         const filtered = response.filter((item) => {
           return (
