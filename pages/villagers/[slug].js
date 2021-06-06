@@ -202,10 +202,11 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const villagers = await getVillagers();
+  const paths = villagers.map((villager) => {
+    return `/villagers/${villager.name}`;
+  });
   return {
-    paths: villagers
-      ? villagers.map(({ villager }) => `/villagers/${villager}`)
-      : [],
+    paths,
     fallback: true,
   };
 }

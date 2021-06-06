@@ -58,7 +58,7 @@ const Header = (props) => {
         >
           <ListSearch size={24} />
         </button>
-        {searchVisible && <SearchPanel onClearQuery={toggleSearch} />}
+        <SearchPanel toggleSearch={toggleSearch} visible={searchVisible} />
       </section>
     </header>
   );

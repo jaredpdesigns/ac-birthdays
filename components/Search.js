@@ -5,14 +5,14 @@ import VillagerSearch from "@components/VillagerSearch";
 import styles from "./Search.module.scss";
 import { Search, X } from "tabler-icons-react";
 
-const SearchPanel = (props) => {
+const SearchPanel = ({ visible, toggleSearch }) => {
   const searchRef = useRef(null);
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [villagers, setVillagers] = useState([]);
   const clearQuery = useCallback(() => {
-    props.onClearQuery();
+    toggleSearch(false);
     setQuery("");
     setVillagers([]);
   }, []);
@@ -52,7 +52,7 @@ const SearchPanel = (props) => {
   const onClick = useCallback((event) => {
     if (searchRef.current && !searchRef.current.contains(event.target)) {
       setActive(false);
-      props.onClearQuery();
+      toggleSearch(false);
       window.removeEventListener("click", onClick);
     }
   }, []);
@@ -64,56 +64,58 @@ const SearchPanel = (props) => {
 
   return (
     <section
-      className={`${styles.Search} color__bg--contrast flow--flex flow__direction--column radius__bl--s radius__br--s shadow`}
+      className={`${styles.Search} ${visible ? styles.SearchVisible : ""} radius__bl--s radius__br--s shadow`}
       ref={searchRef}
     >
-      <section
-        className={`${styles.SearchInput} flow--flex flow__align--v-center flow__flex--shrink-no padding__all--m`}
-      >
-        <span className="color__type--base--semi flow--inline flow__align--h-center flow__align--v-center flow__size--h-xl flow__size--w-xl">
-          <Search size={20} />
-        </span>
-        <input
-          id="searchy"
-          className="flow__size--h-xl padding__left--xl padding__right--xl type__size--m-l"
-          onChange={onChange}
-          onFocus={onFocus}
-          placeholder="Search…"
-          type="text"
-          value={query}
-        />
-        {query && (
-          <button
-            className="color__type--base--semi flow--inline flow__align--h-center flow__align--v-center flow__size--h-xl flow__size--w-xl smooth"
-            onClick={clearQuery}
+      <section className={`${styles.SearchInner} border__bottom border__left border__right color__bg--contrast color__border--base--light flow--flex flow__direction--column radius__bl--s radius__br--s width__ml`}>
+        <section
+          className={`${styles.SearchInput} flow--flex flow__align--v-center flow__flex--shrink-no padding__all--m`}
+        >
+          <span className="color__type--base--semi flow--inline flow__align--h-center flow__align--v-center flow__size--h-xl flow__size--w-xl">
+            <Search size={20} />
+          </span>
+          <input
+            id="searchy"
+            className="flow__size--h-xl padding__left--xl padding__right--xl type__size--m-l"
+            onChange={onChange}
+            onFocus={onFocus}
+            placeholder="Search…"
+            type="text"
+            value={query}
+          />
+          {query && (
+            <button
+              className="color__type--base--semi flow--inline flow__align--h-center flow__align--v-center flow__size--h-xl flow__size--w-xl smooth"
+              onClick={clearQuery}
+            >
+              <X size={16} />
+            </button>
+          )}
+        </section>
+        {active && loading && (
+          <section className={`${styles.SearchLoading} type__align--center`}>
+            <Loading />
+          </section>
+        )}
+        {active && villagers.length > 0 && (
+          <section
+            className={`${styles.SearchResults} border__top color__border--base--light flow--grid flow__grid--gap-xs flow__flex--grow flow__flex--shrink margin__bottom--s padding__all--s`}
           >
-            <X size={16} />
-          </button>
+            {villagers.map((item, index) => (
+              <VillagerSearch villager={item} key={index} />
+            ))}
+          </section>
+        )}
+        {!loading && query && !villagers.length && (
+          <section
+            className={`${styles.SearchResults} border__top color__border--base--light flow__flex--grow flow__flex--shrink oomph__v--xs padding__all--m`}
+          >
+            <p className="color__type--base--mid type__size--s-s">
+              <em>No villagers found</em>
+            </p>
+          </section>
         )}
       </section>
-      {active && loading && (
-        <section className={`${styles.SearchLoading} type__align--center`}>
-          <Loading />
-        </section>
-      )}
-      {active && villagers.length > 0 && (
-        <section
-          className={`${styles.SearchResults} border__top color__border--base--light flow__flex--grow flow__flex--shrink oomph__v--xs padding__all--s`}
-        >
-          {villagers.map((item, index) => (
-            <VillagerSearch villager={item} key={index} />
-          ))}
-        </section>
-      )}
-      {!loading && query && !villagers.length && (
-        <section
-          className={`${styles.SearchResults} border__top color__border--base--light flow__flex--grow flow__flex--shrink oomph__v--xs padding__all--m`}
-        >
-          <p className="color__type--base--mid type__size--s-s">
-            <em>No villagers found</em>
-          </p>
-        </section>
-      )}
     </section>
   );
 };
