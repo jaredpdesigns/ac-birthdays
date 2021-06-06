@@ -9,7 +9,7 @@ import Layout from "@components/Layout";
 import styles from "./Detail.module.scss";
 import { CalendarEvent, Hanger, Marquee, Paint } from "tabler-icons-react";
 
-const Detail = ({ extras, villager }) => {
+const Detail = ({ clothing, flooring, villager, wallpaper }) => {
   const router = useRouter();
 
   if (!router.isFallback && !villager) {
@@ -96,79 +96,76 @@ const Detail = ({ extras, villager }) => {
                 </blockquote>
               </figcaption>
             </section>
-            {extras && (
-              <section
-                className={`${styles.DetailExtras} flow--grid flow__align--h-center flow__align--v-start flow__grid--columns-auto flow__grid--gap-l padding__all--l type__align--center width__xl`}
-              >
-                {extras.clothing &&
-                  extras.clothing.variations
-                    .filter(
-                      (item) =>
-                        item.variation ===
-                        villager.nh_details.clothing_variation
-                    )
-                    .map((item, index) => (
-                      <section className="oomph__v--m" key={index}>
-                        <span className="flow--flex flow__align--h-center flow__align--v-center oomph__h--s type__align--center">
-                          <Hanger size={24} />
-                          <h2>Favorite Outfit</h2>
-                        </span>
-                        <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
-                          <img
-                            alt={`${villager.name}‘s favorite outfit`}
-                            loading="lazy"
-                            src={item.image_url}
-                            height="128"
-                            width="128"
-                          />
-                          <figcaption>
-                            <p>{extras.clothing.name}</p>
-                          </figcaption>
-                        </figure>
-                      </section>
-                    ))}
-                {extras.flooring && (
-                  <section className="oomph__v--m">
-                    <span className="flow--flex flow__align--h-center flow__align--v-center oomph__h--s type__align--center">
-                      <Marquee size={24} />
-                      <h2>House Flooring</h2>
-                    </span>
-                    <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
-                      <img
-                        alt={`${villager.name}‘s house flooring`}
-                        loading="lazy"
-                        src={extras.flooring.image_url}
-                        height="128"
-                        width="128"
-                      />
-                      <figcaption>
-                        <p>{extras.flooring.name}</p>
-                      </figcaption>
-                    </figure>
-                  </section>
-                )}
-                {extras.wallpaper && (
-                  <section className="oomph__v--m">
-                    <span className="flow--flex flow__align--h-center flow__align--v-center oomph__h--s type__align--center">
-                      <Paint size={24} />
-                      <h2>House Wallpaper</h2>
-                    </span>
-                    <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
-                      <img
-                        alt={`${villager.name}‘s house wallpaper`}
-                        loading="lazy"
-                        src={extras.wallpaper.image_url}
-                        height="128"
-                        width="128"
-                      />
-                      <figcaption>
-                        <p>{extras.wallpaper.name}</p>
-                      </figcaption>
-                    </figure>
-                  </section>
-                )}
-              </section>
-            )}
+            <section
+              className={`${styles.DetailExtras} flow--grid flow__align--h-center flow__align--v-start flow__grid--columns-auto flow__grid--gap-l padding__all--l type__align--center width__xl`}
+            >
+              {clothing &&
+                clothing.variations
+                  .filter(
+                    (item) =>
+                      item.variation === villager.nh_details.clothing_variation
+                  )
+                  .map((item, index) => (
+                    <section className="oomph__v--m" key={index}>
+                      <span className="flow--flex flow__align--h-center flow__align--v-center oomph__h--s type__align--center">
+                        <Hanger size={24} />
+                        <h2>Favorite Outfit</h2>
+                      </span>
+                      <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
+                        <img
+                          alt={`${villager.name}‘s favorite outfit`}
+                          loading="lazy"
+                          src={item.image_url}
+                          height="128"
+                          width="128"
+                        />
+                        <figcaption>
+                          <p>{clothing.name}</p>
+                        </figcaption>
+                      </figure>
+                    </section>
+                  ))}
+              {flooring && (
+                <section className="oomph__v--m">
+                  <span className="flow--flex flow__align--h-center flow__align--v-center oomph__h--s type__align--center">
+                    <Marquee size={24} />
+                    <h2>House Flooring</h2>
+                  </span>
+                  <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
+                    <img
+                      alt={`${villager.name}‘s house flooring`}
+                      loading="lazy"
+                      src={flooring.image_url}
+                      height="128"
+                      width="128"
+                    />
+                    <figcaption>
+                      <p>{flooring.name}</p>
+                    </figcaption>
+                  </figure>
+                </section>
+              )}
+              {wallpaper && (
+                <section className="oomph__v--m">
+                  <span className="flow--flex flow__align--h-center flow__align--v-center oomph__h--s type__align--center">
+                    <Paint size={24} />
+                    <h2>House Wallpaper</h2>
+                  </span>
+                  <figure className="flow--inline flow__direction--column flow__align--h-center flow__align--v-center oomph__v--m padding__all--l radius--s shadow type__align--center">
+                    <img
+                      alt={`${villager.name}‘s house wallpaper`}
+                      loading="lazy"
+                      src={wallpaper.image_url}
+                      height="128"
+                      width="128"
+                    />
+                    <figcaption>
+                      <p>{wallpaper.name}</p>
+                    </figcaption>
+                  </figure>
+                </section>
+              )}
+            </section>
           </article>
         </main>
       )}
@@ -176,38 +173,29 @@ const Detail = ({ extras, villager }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
-  const villager = await getVillager(params.slug);
+export async function getServerSideProps(context) {
+  const villager = await getVillager(context.query.slug);
   if (!villager) {
     return {
       notFound: true,
     };
   }
-  const extras = {
-    clothing: await getExtra(`nh/clothing/${villager.clothing}?thumbsize=256`),
-    flooring: await getExtra(
-      `nh/interior/${villager.nh_details.house_flooring}?thumbsize=256`
-    ),
-    wallpaper: await getExtra(
-      `nh/interior/${villager.nh_details.house_wallpaper}?thumbsize=256`
-    ),
-  };
+  const clothing = await getExtra(
+    `nh/clothing/${villager.clothing}?thumbsize=256`
+  );
+  const flooring = await getExtra(
+    `nh/interior/${villager.nh_details.house_flooring}?thumbsize=256`
+  );
+  const wallpaper = await getExtra(
+    `nh/interior/${villager.nh_details.house_wallpaper}?thumbsize=256`
+  );
   return {
     props: {
-      extras: extras,
+      clothing: clothing,
+      flooring: flooring,
       villager: villager,
+      wallpaper: wallpaper,
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const villagers = await getVillagers();
-  const paths = villagers.map((villager) => {
-    return `/villagers/${villager.name}`;
-  });
-  return {
-    paths,
-    fallback: true,
   };
 }
 export default Detail;
