@@ -2,6 +2,7 @@
   background-color: var(--bg);
   color: var(--type);
   display: block;
+  min-height: calc(var(--size__xxxl) + var(--size__s));
   position: relative;
   &:after,
   &:before {
